@@ -1,6 +1,6 @@
 <template>
   <div class="autocomplete">
-    <input v-model.trim="query" type="search" autofocus>
+    <input v-model.trim="query" type="search" autofocus placeholder="Search word">
     <div class="results">
       <slot v-bind="{ results }" />
     </div>

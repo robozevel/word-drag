@@ -17,6 +17,7 @@
     "lodash.debounce": "^4.0.8",
     "micro": "^9.3.4",
     "nuxt": "^2.9.2",
+    "vuedraggable": "^2.23.0",
     "wordlist-english": "^1.2.1"
   },
   "devDependencies": {

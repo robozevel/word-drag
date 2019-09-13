@@ -2,30 +2,51 @@
   <main>
     <Autocomplete :search="search">
       <template #default="{ results }">
-        <div v-for="result in results" :key="result" class="result" role="button" @click="addWord(result)">
-          {{ result }}
-        </div>
+        <draggable
+          v-model="results"
+          v-bind="draggableOptions"
+          :sort="false"
+        >
+          <div v-for="result in results" :key="result" class="result" role="button" @click="addWord(result)">
+            {{ result }}
+          </div>
+        </draggable>
       </template>
     </Autocomplete>
-    <div class="text">
+    <draggable
+      v-model="words"
+      class="text"
+      tag="div"
+      v-bind="draggableOptions"
+    >
       <template v-for="(word, i) in words">
-        <span :key="i" class="word" role="button" @click="removeWord(i)">{{ word }} </span>
+        <span :key="i" class="word" role="button" @click="removeWord(i)">{{ word }}</span>
       </template>
-    </div>
+    </draggable>
   </main>
 </template>
 
 <script>
 import axios from 'axios'
+import draggable from 'vuedraggable'
 import Autocomplete from '~/components/Autocomplete.vue'
 
 export default {
   components: {
+    draggable,
     Autocomplete
   },
   data () {
     return {
       words: []
+    }
+  },
+  computed: {
+    draggableOptions () {
+      return {
+        group: 'words',
+        animation: 150
+      }
     }
   },
   methods: {
@@ -63,18 +84,26 @@ textarea {
   overflow: auto;
 }
 
+.autocomplete .result {
+  padding: .25rem;
+  margin: .25rem;
+  background-color: #f0f0f0;
+  border-radius: .25rem;
+}
+
 .text {
   padding: 1rem;
   font-size: 150%;
   flex: 1;
 }
 
+.word,
 .result {
   display: inline-block;
-  padding: .25rem;
-  margin: .25rem;
-  background-color: #f0f0f0;
-  border-radius: .25rem;
+}
+
+.text > *::after {
+  content: '\a0'
 }
 
 [role=button] {
