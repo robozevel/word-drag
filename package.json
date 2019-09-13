@@ -1,0 +1,29 @@
+{
+  "name": "word-drag",
+  "version": "1.0.0",
+  "description": "Drag and drop text editor",
+  "author": "Guy Levi",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "fuse.js": "^3.4.5",
+    "lodash.debounce": "^4.0.8",
+    "micro": "^9.3.4",
+    "nuxt": "^2.9.2",
+    "wordlist-english": "^1.2.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^1.0.1",
+    "@nuxtjs/eslint-module": "^1.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^6.1.0",
+    "eslint-plugin-nuxt": ">=0.4.2"
+  }
+}
