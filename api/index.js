@@ -1,3 +1,4 @@
+import { URLSearchParams } from 'url'
 import { run } from 'micro'
 import wordlist from 'wordlist-english'
 import Fuse from 'fuse.js'
