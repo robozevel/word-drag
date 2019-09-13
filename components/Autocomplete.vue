@@ -2,7 +2,10 @@
   <div class="autocomplete">
     <input v-model.trim="query" type="search" autofocus placeholder="Search word">
     <div class="results">
-      <slot v-bind="{ results }" />
+      <div v-if="err" class="error">
+        {{ err.message }}
+      </div>
+      <slot v-else v-bind="{ results }" />
     </div>
   </div>
 </template>
@@ -24,6 +27,7 @@ export default {
   },
   data () {
     return {
+      err: null,
       query: null,
       results: null,
       loading: false
@@ -40,6 +44,7 @@ export default {
   methods: {
     async autocomplete (query) {
       try {
+        this.err = null
         if (!query) {
           this.results = null
           return
@@ -49,7 +54,7 @@ export default {
         if (query !== this.query) return
         this.results = results
       } catch (err) {
-        console.error(err)
+        this.err = err
       } finally {
         this.loading = false
       }
@@ -72,5 +77,10 @@ input {
 input:focus {
   outline: none;
   border-color: #000;
+}
+
+.error {
+  color: #ff0000;
+  text-align: center;
 }
 </style>
